@@ -2,7 +2,7 @@ import axios from "axios"
 
 
 const api = axios.create({
-    baseURL: "http://localhost:4000", 
+    baseURL: "https://skill-sync-backend-asvm.onrender.com", 
     withCredentials: true
 })
 
