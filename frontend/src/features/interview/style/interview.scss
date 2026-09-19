@@ -1,0 +1,1606 @@
+// ── Cognitive Suite: Noir Theme Variables ──────────────────────────────────────
+$bg-void:                  #000000;
+$obsidian-surface:         #0a0a0a;
+$charcoal-container:       #131313;
+$surface-container-low:    #161616;
+$surface-container-high:   #1f1f1f;
+$surface-container-highest:#2a2a2a;
+
+$border-ghost:             rgba(255, 255, 255, 0.08);
+$border-accent:            rgba(192, 193, 255, 0.25);
+$outline:                  #918f9a;
+$outline-variant:          #46464f;
+
+$electric-indigo:          #c0c1ff;
+$electric-indigo-dim:      rgba(192, 193, 255, 0.12);
+$on-primary:               #131449;
+
+$sky-accent:               #89ceff;
+$sky-accent-dim:           rgba(137, 206, 255, 0.12);
+
+$text-primary:             #f4f4f5;
+$text-secondary:           #d4d4d8;
+$text-muted:               #a1a1aa;
+
+$error-accent:             #ffb4ab;
+$error-dim:                rgba(255, 180, 171, 0.12);
+
+// ── Typography ────────────────────────────────────────────────────────────────
+$font-display:             'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+$font-body:                'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+$font-mono:                'JetBrains Mono', monospace;
+
+// Score colours
+$score-high:               #89ceff;
+$score-mid:                #c0c1ff;
+$score-low:                #ffb4ab;
+
+// ── Page Shell ───────────────────────────────────────────────────────────────
+.interview-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: $bg-void;
+    background-image: 
+        radial-gradient(circle at 0% 0%, rgba(192, 193, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(137, 206, 255, 0.03) 0%, transparent 50%);
+    color: $text-primary;
+    font-family: $font-body;
+    display: flex;
+    align-items: stretch;
+}
+
+// ── Layout ───────────────────────────────────────────────────────────────────
+.interview-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+
+    @media (max-width: 1024px) {
+        flex-direction: column;
+    }
+}
+
+// ── Left Nav ─────────────────────────────────────────────────────────────────
+.interview-nav {
+    width: 250px;
+    flex-shrink: 0;
+    background-color: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-right: 1px solid $border-ghost;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.75rem 1.15rem;
+    gap: 1.25rem;
+
+    @media (max-width: 1024px) {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid $border-ghost;
+        padding: 1.25rem 1.5rem;
+    }
+
+    .nav-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    &__home-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        width: 100%;
+        padding: 0.65rem 0.85rem;
+        background-color: rgba(22, 22, 22, 0.8);
+        border: 1px solid $border-ghost;
+        border-radius: 0.75rem;
+        color: $text-secondary;
+        font-size: 0.88rem;
+        font-weight: 600;
+        font-family: $font-display;
+        cursor: pointer;
+        margin-bottom: 0.5rem;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+        svg {
+            stroke: $sky-accent;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+
+        &:hover {
+            background-color: rgba(137, 206, 255, 0.08);
+            border-color: rgba(137, 206, 255, 0.3);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(137, 206, 255, 0.15);
+
+            svg {
+                transform: translateX(-2px);
+            }
+        }
+    }
+
+    .analysis-badge-container {
+        padding: 0 0.25rem 0.6rem;
+
+        .analysis-type-tag {
+            display: inline-block;
+            font-family: $font-mono;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            padding: 0.2rem 0.55rem;
+            border-radius: 0.35rem;
+
+            &.tag--roadmap {
+                background-color: rgba(137, 206, 255, 0.12);
+                color: $sky-accent;
+                border: 1px solid rgba(137, 206, 255, 0.3);
+            }
+
+            &.tag--interview {
+                background-color: rgba(192, 193, 255, 0.12);
+                color: $electric-indigo;
+                border: 1px solid rgba(192, 193, 255, 0.3);
+            }
+        }
+    }
+
+    &__label {
+        font-family: $font-mono;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: $text-muted;
+        margin-bottom: 0.35rem;
+        padding: 0 0.5rem;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        width: 100%;
+        padding: 0.7rem 0.85rem;
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.75rem;
+        color: $text-muted;
+        font-size: 0.88rem;
+        font-family: $font-display;
+        font-weight: 500;
+        cursor: pointer;
+        text-align: left;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+            background-color: rgba(192, 193, 255, 0.05);
+            color: $text-primary;
+        }
+
+        &--active {
+            background-color: $electric-indigo-dim;
+            border-color: $border-accent;
+            color: $electric-indigo;
+            font-weight: 700;
+            box-shadow: 0 0 16px rgba(192, 193, 255, 0.12);
+        }
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+    }
+}
+
+// ── Dividers ─────────────────────────────────────────────────────────────────
+.interview-divider {
+    width: 1px;
+    background: linear-gradient(180deg, transparent, $border-ghost 20%, $border-ghost 80%, transparent);
+    flex-shrink: 0;
+
+    @media (max-width: 1024px) {
+        display: none;
+    }
+}
+
+// ── Center Content ───────────────────────────────────────────────────────────
+.interview-content {
+    flex: 1;
+    padding: 2.5rem 2.25rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    section {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+}
+
+.content-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $border-ghost;
+
+    h2 {
+        font-family: $font-display;
+        font-size: 1.55rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: #ffffff;
+    }
+
+    &__count {
+        font-family: $font-mono;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: $sky-accent;
+        background-color: $sky-accent-dim;
+        border: 1px solid rgba(137, 206, 255, 0.25);
+        padding: 0.25rem 0.65rem;
+        border-radius: 0.4rem;
+        letter-spacing: 0.04em;
+    }
+}
+
+// ── Job Analysis Tab Component ────────────────────────────────────────────────
+.job-analysis-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.job-analysis-meta-card {
+    background-color: rgba(14, 14, 14, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid $border-ghost;
+    border-radius: 1.25rem;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .meta-top {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+
+        .meta-badge {
+            font-family: $font-mono;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.4rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+
+            &.role-badge {
+                background-color: $electric-indigo-dim;
+                color: $electric-indigo;
+                border: 1px solid $border-accent;
+            }
+
+            &.domain-badge {
+                background-color: $sky-accent-dim;
+                color: $sky-accent;
+                border: 1px solid rgba(137, 206, 255, 0.3);
+            }
+        }
+    }
+
+    .role-title {
+        font-family: $font-display;
+        font-size: 1.35rem;
+        font-weight: 800;
+        color: #ffffff;
+        letter-spacing: -0.015em;
+        margin: 0;
+    }
+
+    .role-summary {
+        font-family: $font-body;
+        font-size: 0.95rem;
+        color: $text-secondary;
+        line-height: 1.65;
+        margin: 0;
+    }
+}
+
+.job-breakdown-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.job-breakdown-card {
+    background-color: rgba(14, 14, 14, 0.85);
+    border: 1px solid $border-ghost;
+    border-radius: 1.15rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &--full {
+        grid-column: 1 / -1;
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+
+        .header-icon {
+            color: $electric-indigo;
+            display: flex;
+            align-items: center;
+        }
+
+        h4 {
+            font-family: $font-display;
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+            margin: 0;
+        }
+    }
+
+    .responsibilities-list,
+    .requirements-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+
+        li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            font-family: $font-body;
+            font-size: 0.9rem;
+            color: $text-secondary;
+            line-height: 1.55;
+
+            .check-bullet {
+                color: #4ade80;
+                font-weight: bold;
+                flex-shrink: 0;
+                margin-top: 1px;
+            }
+
+            .dot-bullet {
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: $sky-accent;
+                box-shadow: 0 0 6px rgba(137, 206, 255, 0.5);
+                flex-shrink: 0;
+                margin-top: 0.45rem;
+            }
+        }
+    }
+
+    .nice-to-have-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+
+        .bonus-pill {
+            font-family: $font-mono;
+            font-size: 0.76rem;
+            color: $electric-indigo;
+            background-color: rgba(192, 193, 255, 0.08);
+            border: 1px solid rgba(192, 193, 255, 0.2);
+            padding: 0.35rem 0.75rem;
+            border-radius: 2rem;
+        }
+    }
+
+    .market-demand-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+
+        .demand-stat {
+            font-family: $font-body;
+            font-size: 0.95rem;
+            color: $text-secondary;
+            line-height: 1.5;
+
+            strong {
+                color: #ffffff;
+                font-family: $font-display;
+                font-weight: 600;
+                margin-right: 0.25rem;
+            }
+
+            .highlight-score {
+                font-family: $font-mono;
+                color: $sky-accent;
+                font-weight: 700;
+                background-color: rgba(137, 206, 255, 0.1);
+                padding: 0.15rem 0.4rem;
+                border-radius: 0.25rem;
+            }
+
+            .demand-badge {
+                font-family: $font-mono;
+                font-size: 0.75rem;
+                font-weight: 700;
+                padding: 0.15rem 0.5rem;
+                border-radius: 0.25rem;
+                text-transform: uppercase;
+                margin-left: 0.35rem;
+
+                &.demand-very-high, &.demand-high {
+                    background-color: rgba(137, 206, 255, 0.15);
+                    color: $sky-accent;
+                    border: 1px solid rgba(137, 206, 255, 0.3);
+                }
+
+                &.demand-moderate {
+                    background-color: rgba(192, 193, 255, 0.15);
+                    color: $electric-indigo;
+                    border: 1px solid rgba(192, 193, 255, 0.3);
+                }
+
+                &.demand-low {
+                    background-color: rgba(255, 180, 171, 0.15);
+                    color: $error-accent;
+                    border: 1px solid rgba(255, 180, 171, 0.3);
+                }
+            }
+
+            .demand-trend {
+                font-style: italic;
+                font-size: 0.85rem;
+                color: $text-muted;
+            }
+        }
+        
+        .demand-overview {
+            font-family: $font-body;
+            font-size: 0.9rem;
+            color: $text-secondary;
+            line-height: 1.5;
+            margin: 0;
+            margin-top: -0.25rem;
+        }
+    }
+
+    .alternative-roles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+        margin-top: 0.5rem;
+
+        .alt-role-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.05);
+                border-color: rgba(192, 193, 255, 0.2);
+            }
+
+            &__header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                gap: 0.5rem;
+
+                h5 {
+                    font-family: $font-display;
+                    font-size: 1rem;
+                    color: #ffffff;
+                    margin: 0;
+                    line-height: 1.3;
+                }
+
+                .match-badge {
+                    font-family: $font-mono;
+                    font-size: 0.65rem;
+                    font-weight: 700;
+                    padding: 0.15rem 0.4rem;
+                    border-radius: 0.25rem;
+                    white-space: nowrap;
+
+                    &.match-high {
+                        background-color: rgba(74, 222, 128, 0.15);
+                        color: #4ade80;
+                    }
+                    &.match-mid {
+                        background-color: rgba(137, 206, 255, 0.15);
+                        color: $sky-accent;
+                    }
+                    &.match-low {
+                        background-color: rgba(192, 193, 255, 0.15);
+                        color: $electric-indigo;
+                    }
+                }
+            }
+
+            &__desc {
+                font-family: $font-body;
+                font-size: 0.85rem;
+                color: $text-secondary;
+                margin: 0;
+                line-height: 1.5;
+            }
+
+            &__gaps {
+                font-family: $font-body;
+                font-size: 0.8rem;
+                color: $text-muted;
+                background: rgba(0, 0, 0, 0.3);
+                padding: 0.5rem 0.75rem;
+                border-radius: 0.5rem;
+                border-left: 2px solid $electric-indigo;
+
+                strong {
+                    color: #c0c1ff;
+                    font-weight: 600;
+                }
+            }
+
+            &__footer {
+                margin-top: auto;
+                padding-top: 0.5rem;
+                border-top: 1px dashed rgba(255, 255, 255, 0.1);
+                
+                .transition-diff {
+                    font-family: $font-mono;
+                    font-size: 0.75rem;
+                    color: $text-muted;
+
+                    strong {
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.raw-job-card {
+    background-color: rgba(14, 14, 14, 0.85);
+    border: 1px solid $border-ghost;
+    border-radius: 1rem;
+    padding: 1.5rem;
+
+    h4 {
+        font-family: $font-display;
+        font-size: 1rem;
+        color: #ffffff;
+        margin-bottom: 0.75rem;
+    }
+
+    .raw-desc {
+        font-family: $font-body;
+        font-size: 0.9rem;
+        color: $text-secondary;
+        line-height: 1.65;
+        white-space: pre-wrap;
+    }
+}
+
+// ── Career Phase Cards (Roadmap Mode) ─────────────────────────────────────────
+.career-phases-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.career-phase-card {
+    background-color: rgba(14, 14, 14, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid $border-ghost;
+    border-radius: 1.25rem;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+        border-color: rgba(137, 206, 255, 0.3);
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+
+        .career-phase-card__meta {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.25rem;
+
+            .career-phase-card__badge {
+                font-family: $font-mono;
+                font-size: 0.72rem;
+                font-weight: 700;
+                color: $sky-accent;
+                background-color: $sky-accent-dim;
+                border: 1px solid rgba(137, 206, 255, 0.3);
+                padding: 0.2rem 0.55rem;
+                border-radius: 0.4rem;
+                letter-spacing: 0.05em;
+            }
+
+            .career-phase-card__duration {
+                font-family: $font-mono;
+                font-size: 0.75rem;
+                color: $text-muted;
+            }
+        }
+
+        .career-phase-card__title {
+            font-family: $font-display;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.015em;
+            margin: 0;
+        }
+
+        .career-phase-card__objective {
+            font-family: $font-body;
+            font-size: 0.94rem;
+            color: $text-secondary;
+            line-height: 1.6;
+            margin: 0;
+        }
+    }
+
+    &__topics {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+
+        h4 {
+            font-family: $font-mono;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: $text-muted;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin: 0;
+        }
+
+        .topics-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+
+            .topic-tag {
+                font-family: $font-mono;
+                font-size: 0.75rem;
+                color: $text-primary;
+                background-color: rgba(22, 22, 22, 0.9);
+                border: 1px solid rgba(255, 255, 255, 0.07);
+                padding: 0.25rem 0.65rem;
+                border-radius: 0.4rem;
+                letter-spacing: 0.01em;
+            }
+        }
+    }
+
+    &__project {
+        background-color: rgba(19, 19, 26, 0.9);
+        border: 1px solid rgba(192, 193, 255, 0.2);
+        border-left: 3px solid $electric-indigo;
+        border-radius: 0.75rem;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+
+        .project-badge {
+            align-self: flex-start;
+            font-family: $font-mono;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: $electric-indigo;
+            background-color: $electric-indigo-dim;
+            padding: 0.15rem 0.5rem;
+            border-radius: 0.35rem;
+            letter-spacing: 0.08em;
+        }
+
+        h4 {
+            font-family: $font-display;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        p {
+            font-family: $font-body;
+            font-size: 0.9rem;
+            color: $text-secondary;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .tech-stack-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.25rem;
+
+            .tech-tag {
+                font-family: $font-mono;
+                font-size: 0.72rem;
+                font-weight: 600;
+                color: $electric-indigo;
+                background-color: rgba(192, 193, 255, 0.08);
+                border: 1px solid rgba(192, 193, 255, 0.2);
+                padding: 0.15rem 0.55rem;
+                border-radius: 0.35rem;
+            }
+        }
+    }
+
+    &__resources {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+
+        .resources-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: $sky-accent;
+
+            svg {
+                stroke: $sky-accent;
+            }
+
+            h4 {
+                font-family: $font-mono;
+                font-size: 0.75rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: $text-muted;
+                margin: 0;
+            }
+        }
+
+        .phase-resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 0.75rem;
+        }
+    }
+}
+
+// ── Resource Cards (Shared) ──────────────────────────────────────────────────
+.resource-card {
+    background-color: rgba(20, 20, 26, 0.85);
+    border: 1px solid $border-ghost;
+    border-radius: 0.85rem;
+    padding: 1.15rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+        border-color: rgba(137, 206, 255, 0.35);
+        background-color: rgba(26, 26, 36, 0.95);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7);
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+    }
+
+    &__badges {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+    }
+
+    .resource-badge {
+        font-family: $font-mono;
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 0.18rem 0.5rem;
+        border-radius: 0.35rem;
+
+        &--documentation,
+        &--websitesdocumentation {
+            background-color: $sky-accent-dim;
+            color: $sky-accent;
+            border: 1px solid rgba(137, 206, 255, 0.3);
+        }
+
+        &--course,
+        &--video,
+        &--youtube,
+        &--youtubevideochannels {
+            background-color: $electric-indigo-dim;
+            color: $electric-indigo;
+            border: 1px solid $border-accent;
+        }
+
+        &--book,
+        &--recommendedbooks {
+            background-color: rgba(74, 222, 128, 0.12);
+            color: #4ade80;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        &--practice,
+        &--tool,
+        &--article,
+        &--interactivepracticeplatforms {
+            background-color: rgba(251, 191, 36, 0.12);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+    }
+
+    .platform-tag {
+        font-family: $font-mono;
+        font-size: 0.68rem;
+        color: $text-muted;
+        background-color: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 0.15rem 0.45rem;
+        border-radius: 0.35rem;
+    }
+
+    .resource-link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-family: $font-display;
+        font-size: 0.76rem;
+        font-weight: 600;
+        color: $sky-accent;
+        text-decoration: none;
+        padding: 0.22rem 0.55rem;
+        border-radius: 0.4rem;
+        background-color: rgba(137, 206, 255, 0.08);
+        border: 1px solid rgba(137, 206, 255, 0.25);
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+
+        svg {
+            stroke: $sky-accent;
+            transition: transform 0.2s;
+        }
+
+        &:hover {
+            background-color: $sky-accent;
+            color: #002238;
+            border-color: $sky-accent;
+            box-shadow: 0 0 10px rgba(137, 206, 255, 0.4);
+
+            svg {
+                stroke: #002238;
+                transform: translate(1px, -1px);
+            }
+        }
+    }
+
+    &__title {
+        font-family: $font-display;
+        font-size: 1.02rem;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: -0.01em;
+        margin: 0;
+    }
+
+    &__desc {
+        font-family: $font-body;
+        font-size: 0.86rem;
+        color: $text-secondary;
+        line-height: 1.55;
+        margin: 0;
+    }
+}
+
+// ── Curated Resources Tab Grid ────────────────────────────────────────────────
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+}
+
+.empty-resources-banner {
+    padding: 2.5rem 2rem;
+    background-color: rgba(14, 14, 14, 0.85);
+    border: 1px dashed $border-ghost;
+    border-radius: 1rem;
+    text-align: center;
+    color: $text-muted;
+
+    p {
+        font-family: $font-body;
+        font-size: 0.92rem;
+        line-height: 1.6;
+        margin: 0;
+
+        strong {
+            color: $sky-accent;
+        }
+    }
+}
+
+// ── Skill Gap Matrix Cards ────────────────────────────────────────────────────
+.skills-matrix-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.skill-matrix-card {
+    background-color: rgba(14, 14, 14, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid $border-ghost;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: border-color 0.2s;
+
+    &:hover {
+        border-color: rgba(192, 193, 255, 0.25);
+    }
+
+    &__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+
+        .skill-matrix-card__name {
+            font-family: $font-display;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+            letter-spacing: -0.015em;
+        }
+
+        .importance-badge {
+            font-family: $font-mono;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0.2rem 0.55rem;
+            border-radius: 0.4rem;
+
+            &.importance--critical {
+                background-color: $error-dim;
+                color: $error-accent;
+                border: 1px solid rgba(255, 180, 171, 0.3);
+            }
+
+            &.importance--high {
+                background-color: $electric-indigo-dim;
+                color: $electric-indigo;
+                border: 1px solid $border-accent;
+            }
+
+            &.importance--medium,
+            &.importance--low {
+                background-color: $sky-accent-dim;
+                color: $sky-accent;
+                border: 1px solid rgba(137, 206, 255, 0.3);
+            }
+        }
+    }
+
+    &__levels {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background-color: rgba(10, 10, 10, 0.95);
+        padding: 0.95rem 1.25rem;
+        border-radius: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+
+        @media (max-width: 600px) {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.5rem;
+        }
+
+        .level-box {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            flex: 1;
+
+            .level-label {
+                font-family: $font-mono;
+                font-size: 0.7rem;
+                color: $text-muted;
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+            }
+
+            .level-value {
+                font-family: $font-display;
+                font-size: 0.95rem;
+                font-weight: 700;
+
+                &.current {
+                    color: $text-muted;
+                }
+
+                &.target {
+                    color: $sky-accent;
+                }
+            }
+        }
+
+        .level-arrow {
+            color: $electric-indigo;
+            font-size: 1.2rem;
+            font-weight: 700;
+
+            @media (max-width: 600px) {
+                display: none;
+            }
+        }
+    }
+
+    &__desc {
+        font-family: $font-body;
+        font-size: 0.9rem;
+        color: $text-secondary;
+        line-height: 1.6;
+        margin: 0;
+    }
+}
+
+// ── Question Cards ───────────────────────────────────────────────────────────
+.q-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.q-card {
+    background-color: rgba(14, 14, 14, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid $border-ghost;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+        border-color: rgba(192, 193, 255, 0.25);
+        background-color: rgba(20, 20, 20, 0.95);
+        box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.7);
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.15rem 1.35rem;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    &__index {
+        font-family: $font-mono;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: $electric-indigo;
+        background-color: $electric-indigo-dim;
+        border: 1px solid $border-accent;
+        padding: 0.2rem 0.55rem;
+        border-radius: 0.4rem;
+        flex-shrink: 0;
+    }
+
+    &__question {
+        flex: 1;
+        font-family: $font-display;
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: $text-primary;
+        margin: 0;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
+    }
+
+    &__chevron {
+        display: flex;
+        align-items: center;
+        color: $text-muted;
+        flex-shrink: 0;
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s;
+
+        &--open {
+            transform: rotate(180deg);
+            color: $electric-indigo;
+        }
+    }
+
+    &__body {
+        border-top: 1px solid $border-ghost;
+        background-color: rgba(10, 10, 10, 0.95);
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__section {
+        padding: 1.35rem 1.5rem;
+
+        &:not(:last-child) {
+            border-bottom: 1px solid $border-ghost;
+        }
+
+        p {
+            font-family: $font-body;
+            font-size: 0.92rem;
+            color: $text-secondary;
+            line-height: 1.7;
+            margin: 0.5rem 0 0;
+        }
+    }
+
+    &__tag {
+        display: inline-block;
+        font-family: $font-mono;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 0.18rem 0.55rem;
+        border-radius: 0.35rem;
+
+        &--intention {
+            background-color: $sky-accent-dim;
+            color: $sky-accent;
+            border: 1px solid rgba(137, 206, 255, 0.25);
+        }
+
+        &--answer {
+            background-color: $electric-indigo-dim;
+            color: $electric-indigo;
+            border: 1px solid $border-accent;
+        }
+    }
+}
+
+// ── Roadmap ──────────────────────────────────────────────────────────────────
+.roadmap-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.roadmap-day {
+    background-color: rgba(14, 14, 14, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid $border-ghost;
+    border-radius: 1rem;
+    padding: 1.35rem 1.6rem;
+    transition: border-color 0.2s;
+
+    &:hover {
+        border-color: rgba(192, 193, 255, 0.2);
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        margin-bottom: 1rem;
+    }
+
+    &__badge {
+        font-family: $font-mono;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: $electric-indigo;
+        background-color: $electric-indigo-dim;
+        border: 1px solid $border-accent;
+        padding: 0.25rem 0.65rem;
+        border-radius: 0.4rem;
+        white-space: nowrap;
+        letter-spacing: 0.04em;
+    }
+
+    &__focus {
+        font-family: $font-display;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0;
+        letter-spacing: -0.01em;
+    }
+
+    &__tasks {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+        padding: 0;
+        margin: 0;
+
+        li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-family: $font-body;
+            font-size: 0.9rem;
+            color: $text-secondary;
+            line-height: 1.6;
+        }
+    }
+
+    &__bullet {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: $electric-indigo;
+        box-shadow: 0 0 8px rgba(192, 193, 255, 0.6);
+        flex-shrink: 0;
+        margin-top: 0.5rem;
+    }
+}
+
+// ── Right Sidebar ─────────────────────────────────────────────────────────────
+.interview-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    background-color: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-left: 1px solid $border-ghost;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    @media (max-width: 1024px) {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid $border-ghost;
+    }
+}
+
+.sidebar-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, $border-ghost 20%, $border-ghost 80%, transparent);
+}
+
+// ── Match Score Ring (Skill Meter) ────────────────────────────────────────────
+.match-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
+
+    &__label {
+        font-family: $font-mono;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: $text-muted;
+    }
+
+    &__ring {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 4px solid $surface-container-highest;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(19, 19, 19, 0.7);
+
+        &.score--high { 
+            border-color: $score-high; 
+            box-shadow: 0 0 20px rgba(137, 206, 255, 0.25);
+        }
+        &.score--mid  { 
+            border-color: $score-mid; 
+            box-shadow: 0 0 20px rgba(192, 193, 255, 0.25);
+        }
+        &.score--low  { 
+            border-color: $score-low; 
+            box-shadow: 0 0 20px rgba(255, 180, 171, 0.25);
+        }
+    }
+
+    &__value {
+        font-family: $font-display;
+        font-size: 2rem;
+        font-weight: 800;
+        line-height: 1;
+        color: #ffffff;
+        letter-spacing: -0.03em;
+    }
+
+    &__pct {
+        font-family: $font-mono;
+        font-size: 0.75rem;
+        color: $text-muted;
+    }
+
+    &__sub {
+        font-family: $font-body;
+        font-size: 0.8rem;
+        color: $text-muted;
+        line-height: 1.45;
+        text-align: center;
+    }
+}
+
+// ── Job Meter (Hiring Probability Gauge) ────────────────────────────────────
+.job-meter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding-top: 0.25rem;
+
+    &__header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+
+        .job-meter__label {
+            font-family: $font-mono;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: $text-muted;
+            margin: 0;
+            padding-bottom: 0.25rem;
+        }
+
+        .job-meter__value {
+            font-family: $font-display;
+            font-size: 1.75rem;
+            font-weight: 800;
+            line-height: 1;
+
+            &.readiness--high { color: $sky-accent; }
+            &.readiness--mid { color: $electric-indigo; }
+            &.readiness--low { color: $error-accent; }
+        }
+    }
+
+    &__gauge-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        .gauge-track {
+            width: 100%;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 9999px;
+            overflow: hidden;
+            position: relative;
+
+            .gauge-fill {
+                height: 100%;
+                border-radius: 9999px;
+                transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+                &.readiness--high {
+                    background: linear-gradient(90deg, #c0c1ff 0%, #89ceff 100%);
+                    box-shadow: 0 0 10px rgba(137, 206, 255, 0.4);
+                }
+
+                &.readiness--mid {
+                    background: linear-gradient(90deg, #9385ff 0%, #c0c1ff 100%);
+                    box-shadow: 0 0 10px rgba(192, 193, 255, 0.4);
+                }
+
+                &.readiness--low {
+                    background: linear-gradient(90deg, #ff8a80 0%, #ffb4ab 100%);
+                    box-shadow: 0 0 10px rgba(255, 180, 171, 0.4);
+                }
+            }
+        }
+    }
+}
+
+// ── Skill Gaps ────────────────────────────────────────────────────────────────
+.skill-gaps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    &__label {
+        font-family: $font-mono;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: $text-muted;
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+    }
+}
+
+.skill-tag {
+    font-family: $font-mono;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.25rem 0.55rem;
+    border-radius: 0.4rem;
+    letter-spacing: 0.02em;
+
+    &--high {
+        background-color: $error-dim;
+        color: $error-accent;
+        border: 1px solid rgba(255, 180, 171, 0.3);
+    }
+
+    &--medium {
+        background-color: $electric-indigo-dim;
+        color: $electric-indigo;
+        border: 1px solid $border-accent;
+    }
+
+    &--low {
+        background-color: $sky-accent-dim;
+        color: $sky-accent;
+        border: 1px solid rgba(137, 206, 255, 0.3);
+    }
+}
+
+// ── Primary Button (shared) ───────────────────────────────────────────────────
+.primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    background-color: $electric-indigo;
+    color: $on-primary;
+    font-size: 0.88rem;
+    font-weight: 700;
+    font-family: $font-display;
+    letter-spacing: -0.01em;
+    border: none;
+    border-radius: 0.85rem;
+    cursor: pointer;
+    box-shadow: 0 0 18px rgba(192, 193, 255, 0.25);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+
+    svg {
+        fill: $on-primary;
+    }
+
+    &:hover {
+        background-color: #d8d7ff;
+        box-shadow: 0 0 25px rgba(192, 193, 255, 0.45);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+// ── Skeleton Screen (Dashboard) ───────────────────────────────────────────────
+.skeleton-page {
+    pointer-events: none;
+
+    .skeleton-box {
+        border-radius: 0.75rem;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.02) 25%, rgba(255, 255, 255, 0.06) 50%, rgba(255, 255, 255, 0.02) 75%);
+        background-size: 200% 100%;
+        animation: shimmer-noir 1.8s infinite;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .skeleton-btn { height: 42px; width: 100%; margin-bottom: 0.75rem; }
+    .skeleton-tag { height: 26px; width: 60%; margin-bottom: 1rem; }
+    .skeleton-item { height: 38px; width: 100%; margin-bottom: 0.5rem; }
+
+    .skeleton-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid $border-ghost;
+        margin-bottom: 1.5rem;
+
+        .skeleton-title { height: 32px; width: 260px; }
+        .skeleton-pill { height: 26px; width: 90px; }
+    }
+
+    .skeleton-card-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+
+        .skeleton-card { height: 180px; width: 100%; border-radius: 1.25rem; }
+    }
+
+    .skeleton-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+
+        .skeleton-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .skeleton-meter {
+            width: 100%;
+            height: 50px;
+        }
+
+        .skeleton-text {
+            width: 80%;
+            height: 20px;
+        }
+
+        .skeleton-tags-group {
+            width: 100%;
+            height: 70px;
+        }
+    }
+}
+
+@keyframes shimmer-noir {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}

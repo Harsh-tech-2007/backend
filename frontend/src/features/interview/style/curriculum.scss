@@ -1,0 +1,431 @@
+// Import variables from home.scss scope — these are defined in the same SCSS build graph
+// Re-defining them here so this file compiles standalone
+$bg-void:                  #010101;
+$electric-indigo:          #c0c1ff;
+$sky-accent:               #89ceff;
+$font-display:             'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+$font-body:                'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+$font-mono:                'JetBrains Mono', monospace;
+$score-high:               #4ade80;
+$score-mid:                #c0c1ff;
+$score-low:                #ffb4ab;
+
+.curriculum-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 1.5rem;
+    background: $bg-void;
+
+    &__spinner {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 3px solid rgba(192, 193, 255, 0.15);
+        border-top-color: $electric-indigo;
+        animation: spin 0.8s linear infinite;
+    }
+
+    p {
+        font-family: $font-mono;
+        font-size: 0.85rem;
+        color: #555562;
+        letter-spacing: 0.05em;
+    }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.curriculum-page {
+    min-height: 100vh;
+    background: $bg-void;
+    color: #f4f4f5;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.curriculum-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    .back-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: none;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #888;
+        padding: 0.5rem 0.85rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-family: $font-mono;
+        font-size: 0.78rem;
+        white-space: nowrap;
+        transition: all 0.2s;
+
+        &:hover {
+            color: $electric-indigo;
+            border-color: rgba(192, 193, 255, 0.3);
+        }
+    }
+
+    &__meta {
+        .edu-badge {
+            display: inline-block;
+            font-family: $font-mono;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background: rgba(192, 193, 255, 0.12);
+            color: $electric-indigo;
+            border: 1px solid rgba(192, 193, 255, 0.25);
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        h1 {
+            font-family: $font-display;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+            margin: 0.25rem 0;
+        }
+
+        p {
+            font-family: $font-body;
+            font-size: 0.9rem;
+            color: #888;
+            margin: 0;
+
+            strong { color: $sky-accent; }
+        }
+    }
+}
+
+.curriculum-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 2rem;
+    align-items: start;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.curriculum-sidebar {
+    position: sticky;
+    top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1.25rem;
+    padding: 1.75rem 1.25rem;
+    text-align: center;
+}
+
+.gap-score-ring {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 10, 20, 0.7);
+
+    &.score--high { border-color: $score-high; box-shadow: 0 0 24px rgba(74, 222, 128, 0.2); }
+    &.score--mid { border-color: $score-mid; box-shadow: 0 0 24px rgba(192, 193, 255, 0.2); }
+    &.score--low { border-color: $score-low; box-shadow: 0 0 24px rgba(255, 180, 171, 0.2); }
+
+    &__value {
+        font-family: $font-display;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #ffffff;
+        line-height: 1;
+    }
+
+    &__pct {
+        font-family: $font-mono;
+        font-size: 0.75rem;
+        color: #555562;
+    }
+}
+
+.gap-score-label {
+    font-family: $font-mono;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #555562;
+    margin: 0;
+}
+
+.gap-score-tag {
+    font-family: $font-mono;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.3rem;
+
+    &.score--high { background: rgba(74, 222, 128, 0.12); color: $score-high; }
+    &.score--mid { background: rgba(192, 193, 255, 0.12); color: $electric-indigo; }
+    &.score--low { background: rgba(255, 180, 171, 0.12); color: $score-low; }
+}
+
+.sidebar-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.verdict-box {
+    text-align: left;
+    width: 100%;
+
+    .verdict-label {
+        font-family: $font-mono;
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #555562;
+        margin: 0 0 0.5rem;
+    }
+
+    .verdict-text {
+        font-family: $font-body;
+        font-size: 0.82rem;
+        color: #aaaaaa;
+        line-height: 1.55;
+        margin: 0;
+    }
+}
+
+.covered-section, .missing-section {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.covered-label, .missing-label {
+    font-family: $font-mono;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0;
+}
+
+.covered-label { color: #4ade80; }
+.missing-label { color: #ffb4ab; }
+
+.covered-tag, .missing-tag {
+    font-family: $font-body;
+    font-size: 0.78rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.35rem;
+}
+
+.covered-tag {
+    background: rgba(74, 222, 128, 0.08);
+    color: #86efac;
+    border: 1px solid rgba(74, 222, 128, 0.2);
+}
+
+.missing-tag {
+    background: rgba(255, 180, 171, 0.08);
+    color: #ffb4ab;
+    border: 1px solid rgba(255, 180, 171, 0.2);
+}
+
+// Main Content
+.curriculum-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.curriculum-section {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1.25rem;
+    padding: 2rem;
+
+    h2 {
+        font-family: $font-display;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0 0 1.5rem;
+        letter-spacing: -0.01em;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+}
+
+// Skills Matrix
+.skills-matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.skills-matrix-item {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 0.85rem;
+    padding: 1.15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    transition: border-color 0.2s;
+
+    &:hover { border-color: rgba(192, 193, 255, 0.2); }
+
+    &__top {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        h4 {
+            font-family: $font-display;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+        }
+    }
+
+    .badges-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+    }
+
+    .gap-note {
+        font-family: $font-body;
+        font-size: 0.82rem;
+        color: #888;
+        line-height: 1.5;
+        margin: 0;
+    }
+}
+
+.market-badge, .coverage-badge {
+    font-family: $font-mono;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.15rem 0.45rem;
+    border-radius: 0.25rem;
+}
+
+.market-badge {
+    &.dem--high { background: rgba(137, 206, 255, 0.12); color: $sky-accent; }
+    &.dem--mid { background: rgba(192, 193, 255, 0.12); color: $electric-indigo; }
+    &.dem--low { background: rgba(100, 100, 100, 0.12); color: #888; }
+}
+
+.coverage-badge {
+    &.cov--excellent { background: rgba(74, 222, 128, 0.12); color: #4ade80; }
+    &.cov--good { background: rgba(137, 206, 255, 0.1); color: $sky-accent; }
+    &.cov--basic { background: rgba(253, 186, 116, 0.1); color: #fbbf24; }
+    &.cov--none { background: rgba(255, 180, 171, 0.1); color: #ffb4ab; }
+}
+
+// Recommendations
+.recommendations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.rec-card {
+    display: flex;
+    gap: 1rem;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 0.85rem;
+    padding: 1.15rem;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+
+    &:hover { border-color: rgba(192, 193, 255, 0.15); }
+
+    &__left { padding-top: 2px; }
+
+    &__body {
+        flex: 1;
+
+        p {
+            font-family: $font-body;
+            font-size: 0.87rem;
+            color: #aaa;
+            margin: 0.4rem 0 0;
+            line-height: 1.5;
+        }
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+
+        h4 {
+            font-family: $font-display;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+        }
+    }
+}
+
+.priority-badge {
+    font-family: $font-mono;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    white-space: nowrap;
+
+    &.pri--critical { background: rgba(255, 180, 171, 0.15); color: #ffb4ab; }
+    &.pri--high { background: rgba(253, 186, 116, 0.15); color: #fbbf24; }
+    &.pri--medium { background: rgba(192, 193, 255, 0.12); color: $electric-indigo; }
+}
+
+.action-badge {
+    font-family: $font-mono;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+
+    &.act--add { background: rgba(74, 222, 128, 0.12); color: #4ade80; }
+    &.act--expand { background: rgba(137, 206, 255, 0.12); color: $sky-accent; }
+    &.act--update { background: rgba(192, 193, 255, 0.12); color: $electric-indigo; }
+    &.act--remove { background: rgba(255, 180, 171, 0.12); color: #ffb4ab; }
+}
