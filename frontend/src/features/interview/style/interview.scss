@@ -87,6 +87,18 @@ $score-low:                #ffb4ab;
         gap: 0.5rem;
     }
 
+    .nav-top-row {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+    }
+
+    .nav-tabs {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+    }
+
     &__home-btn {
         display: inline-flex;
         align-items: center;
@@ -1607,207 +1619,213 @@ $score-low:                #ffb4ab;
 
 // ── Mobile Responsiveness ────────────────────────────────────────────────────
 
-// Tablet (≤ 1024px) — already partially handled above for layout
-// Additional refinements:
+// Tablet (≤ 1024px)
 @media (max-width: 1024px) {
     .interview-content {
         padding: 1.75rem 1.5rem;
     }
 
     .interview-nav {
-        .nav-content {
+        padding: 1rem 1.25rem;
+        gap: 0.75rem;
+
+        .nav-top-row {
+            flex-direction: row;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .interview-nav__home-btn {
+            width: auto;
+            margin-bottom: 0;
+        }
+
+        .nav-tabs {
             flex-direction: row;
             flex-wrap: wrap;
             gap: 0.4rem;
         }
 
-        &__item {
-            flex: 0 0 auto;
+        .interview-nav__item {
             width: auto;
+            flex: 0 0 auto;
+        }
+
+        .primary-button {
+            width: auto;
+            align-self: flex-start;
+            padding: 0.55rem 1rem;
+            font-size: 0.82rem;
         }
     }
 }
 
-// Mobile (≤ 768px)
+// Mobile (≤ 768px) — nav: top row [home+badge] + scrollable tabs strip below
 @media (max-width: 768px) {
-    .interview-content {
-        padding: 1.35rem 1.15rem;
-        gap: 1.25rem;
-    }
-
     .interview-nav {
-        padding: 0.85rem 1rem;
-        gap: 0.75rem;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid $border-ghost;
+        padding: 0.75rem 1rem 0.6rem;
+        gap: 0.5rem;
+        flex-direction: column;
 
         .nav-content {
-            display: flex;
+            gap: 0.5rem;
+        }
+
+        // Top row: home btn + badge
+        .nav-top-row {
+            flex-direction: row;
+            align-items: center;
+            gap: 0.6rem;
+
+            .interview-nav__home-btn {
+                width: auto;
+                flex-shrink: 0;
+                margin-bottom: 0;
+                padding: 0.45rem 0.75rem;
+                font-size: 0.8rem;
+                gap: 0.4rem;
+            }
+
+            .analysis-badge-container {
+                padding: 0;
+                flex-shrink: 0;
+            }
+        }
+
+        // Tab strip: horizontal scroll
+        .nav-tabs {
             flex-direction: row;
             flex-wrap: nowrap;
             overflow-x: auto;
-            gap: 0.4rem;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 0.25rem;
-
-            // hide scrollbar but keep scroll behaviour
+            gap: 0.35rem;
+            padding-bottom: 2px;
             scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+
             &::-webkit-scrollbar { display: none; }
+
+            .interview-nav__label {
+                display: none;
+            }
+
+            .interview-nav__item {
+                flex-shrink: 0;
+                width: auto;
+                white-space: nowrap;
+                padding: 0.45rem 0.85rem;
+                font-size: 0.8rem;
+                gap: 0.4rem;
+            }
         }
 
-        &__home-btn {
-            flex-shrink: 0;
-            width: auto;
-            margin-bottom: 0;
-            padding: 0.55rem 0.85rem;
-            font-size: 0.82rem;
-        }
-
-        &__label {
-            display: none; // hidden on mobile to save space
-        }
-
-        &__item {
-            flex-shrink: 0;
-            width: auto;
-            padding: 0.55rem 0.9rem;
-            font-size: 0.82rem;
+        // Hide Export Profile on mobile
+        .primary-button {
+            display: none;
         }
     }
 
+    // Sidebar: horizontal grid below content
     .interview-sidebar {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid $border-ghost;
         padding: 1.25rem 1rem;
-        flex-direction: row;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 1rem;
-        justify-content: center;
+        align-items: start;
 
-        .match-score,
-        .job-meter,
-        .skill-gaps {
-            flex: 1 1 45%;
-            min-width: 160px;
-        }
+        .sidebar-divider { display: none; }
+        .match-score { grid-column: 1 / -1; }
+        .job-meter   { grid-column: 1 / 2; }
+        .skill-gaps  { grid-column: 2 / 3; }
+    }
 
-        .sidebar-divider {
-            display: none;
-        }
+    .interview-content {
+        padding: 1.25rem 1rem;
+        gap: 1.15rem;
     }
 
     .content-header {
         flex-wrap: wrap;
         gap: 0.5rem;
-
-        h2 { font-size: 1.25rem; }
+        h2 { font-size: 1.2rem; }
     }
 
-    .job-breakdown-grid {
-        grid-template-columns: 1fr;
-    }
+    .job-breakdown-grid      { grid-template-columns: 1fr; }
+    .alternative-roles-grid  { grid-template-columns: 1fr !important; }
+    .resources-grid          { grid-template-columns: 1fr; }
+    .phase-resources-grid    { grid-template-columns: 1fr !important; }
 
-    .alternative-roles-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    .resources-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .phase-resources-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    .career-phase-card {
-        padding: 1.35rem;
-    }
+    .career-phase-card { padding: 1.25rem; }
 
     .q-card {
-        &__header {
-            padding: 1rem;
-            gap: 0.65rem;
-        }
-
-        &__section {
-            padding: 1rem 1.15rem;
-        }
+        &__header { padding: 0.9rem 1rem; gap: 0.6rem; }
+        &__section { padding: 0.9rem 1rem; }
     }
 }
 
 // Small Mobile (≤ 480px)
 @media (max-width: 480px) {
-    .interview-content {
-        padding: 1rem 0.85rem;
-    }
-
     .interview-nav {
-        padding: 0.75rem 0.85rem;
+        padding: 0.6rem 0.75rem;
 
-        &__home-btn {
-            font-size: 0.78rem;
-            padding: 0.45rem 0.75rem;
+        .nav-top-row .interview-nav__home-btn {
+            font-size: 0.75rem;
+            padding: 0.4rem 0.65rem;
         }
 
-        &__item {
-            font-size: 0.78rem;
-            padding: 0.45rem 0.75rem;
+        .nav-tabs .interview-nav__item {
+            font-size: 0.75rem;
+            padding: 0.4rem 0.7rem;
         }
     }
 
+    // Sidebar: single column
     .interview-sidebar {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 1rem 0.85rem;
+        grid-template-columns: 1fr;
 
-        .match-score,
-        .job-meter,
-        .skill-gaps {
-            flex: unset;
-            width: 100%;
-        }
+        .match-score { grid-column: 1; }
+        .job-meter   { grid-column: 1; }
+        .skill-gaps  { grid-column: 1; }
     }
+
+    .interview-content {
+        padding: 0.9rem 0.75rem;
+    }
+
+    .content-header h2 { font-size: 1.05rem; }
 
     .job-analysis-meta-card {
-        padding: 1.25rem;
-
-        .role-title { font-size: 1.15rem; }
-
-        .meta-top { flex-wrap: wrap; gap: 0.4rem; }
+        padding: 1.1rem;
+        .role-title { font-size: 1.05rem; }
+        .meta-top   { flex-wrap: wrap; gap: 0.35rem; }
     }
 
     .job-breakdown-card {
-        padding: 1.15rem;
-
-        .card-header h4 { font-size: 0.95rem; }
+        padding: 1rem;
+        .card-header h4 { font-size: 0.9rem; }
     }
 
     .career-phase-card {
-        padding: 1.15rem;
-
-        &__header {
-            .career-phase-card__title { font-size: 1.1rem; }
-        }
-
-        &__project {
-            padding: 1rem;
-        }
+        padding: 1rem;
+        &__header .career-phase-card__title { font-size: 1.05rem; }
+        &__project { padding: 0.9rem; }
     }
 
     .roadmap-day {
-        padding: 1rem 1.15rem;
-
-        &__focus { font-size: 0.95rem; }
+        padding: 0.9rem 1rem;
+        &__focus { font-size: 0.9rem; }
     }
 
-    .skill-matrix-card {
-        padding: 1.15rem;
-    }
+    .skill-matrix-card { padding: 1rem; }
 
     .q-card {
-        &__header {
-            padding: 0.85rem;
-            gap: 0.5rem;
-        }
-
-        &__question {
-            font-size: 0.88rem;
-        }
+        &__header  { padding: 0.75rem 0.85rem; gap: 0.5rem; }
+        &__question { font-size: 0.86rem; }
+        &__section  { padding: 0.85rem; }
     }
 }

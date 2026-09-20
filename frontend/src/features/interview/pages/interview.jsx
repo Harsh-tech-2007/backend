@@ -396,32 +396,38 @@ const Interview = () => {
                 {/* ── Left Nav ── */}
                 <nav className='interview-nav'>
                     <div className="nav-content">
-                        <button
-                            className='interview-nav__home-btn'
-                            onClick={() => navigate('/')}
-                            title='Back to Dashboard'
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                            Dashboard
-                        </button>
+                        {/* Top row: back button + type badge */}
+                        <div className='nav-top-row'>
+                            <button
+                                className='interview-nav__home-btn'
+                                onClick={() => navigate('/')}
+                                title='Back to Dashboard'
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                                Dashboard
+                            </button>
 
-                        <div className='analysis-badge-container'>
-                            <span className={`analysis-type-tag ${isRoadmapMode ? 'tag--roadmap' : 'tag--interview'}`}>
-                                {isRoadmapMode ? 'Skill & Career Roadmap' : 'Interview Plan'}
-                            </span>
+                            <div className='analysis-badge-container'>
+                                <span className={`analysis-type-tag ${isRoadmapMode ? 'tag--roadmap' : 'tag--interview'}`}>
+                                    {isRoadmapMode ? 'Skill & Career Roadmap' : 'Interview Plan'}
+                                </span>
+                            </div>
                         </div>
 
-                        <p className='interview-nav__label'>Sections</p>
-                        {navItems.map(item => (
-                            <button
-                                key={item.id}
-                                className={`interview-nav__item ${activeNav === item.id ? 'interview-nav__item--active' : ''}`}
-                                onClick={() => setActiveNav(item.id)}
-                            >
-                                <span className='interview-nav__icon'>{item.icon}</span>
-                                {item.label}
-                            </button>
-                        ))}
+                        {/* Scrollable tab items */}
+                        <div className='nav-tabs'>
+                            <p className='interview-nav__label'>Sections</p>
+                            {navItems.map(item => (
+                                <button
+                                    key={item.id}
+                                    className={`interview-nav__item ${activeNav === item.id ? 'interview-nav__item--active' : ''}`}
+                                    onClick={() => setActiveNav(item.id)}
+                                >
+                                    <span className='interview-nav__icon'>{item.icon}</span>
+                                    {item.label}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                     <button
                         onClick={() => alert("Profile export feature is coming soon.")}
@@ -430,6 +436,7 @@ const Interview = () => {
                         Export Profile
                     </button>
                 </nav>
+
 
                 <div className='interview-divider' />
 
