@@ -46,7 +46,7 @@ async function registerUserController(req, res) {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000,
             secure: true, 
-            sameSite: "none"                             // protect against CSRF
+            sameSite: "lax"                             // protect against CSRF
         })
 
         res.status(201).json({
@@ -106,7 +106,7 @@ async function loginUserController(req, res) {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000,
             secure: true,
-            sameSite: "none"                            
+            sameSite: "lax"                            
         })
 
         res.status(200).json({
