@@ -345,6 +345,7 @@ $font-mono:                'JetBrains Mono', monospace;
         outline: none;
         transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         line-height: 1.65;
+        min-height: 140px;
 
         &::placeholder {
             color: $outline-variant;
@@ -360,15 +361,24 @@ $font-mono:                'JetBrains Mono', monospace;
             flex: unset;
             height: 100px;
         }
+
+        // Prevent iOS zoom on focus (font-size < 16px triggers it)
+        @media (max-width: 768px) {
+            font-size: 1rem;
+            min-height: 130px;
+            // Extra bottom padding so the char counter badge doesn't overlap text
+            padding-bottom: 2rem;
+        }
     }
+
 
     &--left {
         position: relative;
 
         .char-counter {
             position: absolute;
-            bottom: 2.6rem;
-            right: 2.6rem;
+            bottom: 1.25rem;   // sits just inside the textarea bottom edge
+            right: 1.35rem;
             font-family: $font-mono;
             font-size: 0.75rem;
             color: $text-muted;
@@ -378,6 +388,7 @@ $font-mono:                'JetBrains Mono', monospace;
             border-radius: 0.35rem;
             border: 1px solid $border-ghost;
         }
+
     }
 
     &--right {
