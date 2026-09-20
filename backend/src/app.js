@@ -6,10 +6,21 @@ const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
-const corsOptions = {
-    origin: "https://mathiverse.in",
-    credentials: true,
-}
+const allowedOrigins = [
+    "https://mathiverse.in",
+    "https://www.mathiverse.in"
+];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true
+}));
 
 app.use(cors(corsOptions))
 app.use(express.json());
