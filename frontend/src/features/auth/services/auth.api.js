@@ -2,7 +2,7 @@ import axios from "axios"
 
 
 const api = axios.create({
-    baseURL: "https://skill-sync-backend-asvm.onrender.com", 
+    baseURL:"https://api.mathiverse.in", 
     withCredentials: true
 })
 
