@@ -1604,3 +1604,210 @@ $score-low:                #ffb4ab;
     0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }
 }
+
+// ── Mobile Responsiveness ────────────────────────────────────────────────────
+
+// Tablet (≤ 1024px) — already partially handled above for layout
+// Additional refinements:
+@media (max-width: 1024px) {
+    .interview-content {
+        padding: 1.75rem 1.5rem;
+    }
+
+    .interview-nav {
+        .nav-content {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        &__item {
+            flex: 0 0 auto;
+            width: auto;
+        }
+    }
+}
+
+// Mobile (≤ 768px)
+@media (max-width: 768px) {
+    .interview-content {
+        padding: 1.35rem 1.15rem;
+        gap: 1.25rem;
+    }
+
+    .interview-nav {
+        padding: 0.85rem 1rem;
+        gap: 0.75rem;
+
+        .nav-content {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 0.4rem;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 0.25rem;
+
+            // hide scrollbar but keep scroll behaviour
+            scrollbar-width: none;
+            &::-webkit-scrollbar { display: none; }
+        }
+
+        &__home-btn {
+            flex-shrink: 0;
+            width: auto;
+            margin-bottom: 0;
+            padding: 0.55rem 0.85rem;
+            font-size: 0.82rem;
+        }
+
+        &__label {
+            display: none; // hidden on mobile to save space
+        }
+
+        &__item {
+            flex-shrink: 0;
+            width: auto;
+            padding: 0.55rem 0.9rem;
+            font-size: 0.82rem;
+        }
+    }
+
+    .interview-sidebar {
+        padding: 1.25rem 1rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+
+        .match-score,
+        .job-meter,
+        .skill-gaps {
+            flex: 1 1 45%;
+            min-width: 160px;
+        }
+
+        .sidebar-divider {
+            display: none;
+        }
+    }
+
+    .content-header {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+
+        h2 { font-size: 1.25rem; }
+    }
+
+    .job-breakdown-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .alternative-roles-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .phase-resources-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .career-phase-card {
+        padding: 1.35rem;
+    }
+
+    .q-card {
+        &__header {
+            padding: 1rem;
+            gap: 0.65rem;
+        }
+
+        &__section {
+            padding: 1rem 1.15rem;
+        }
+    }
+}
+
+// Small Mobile (≤ 480px)
+@media (max-width: 480px) {
+    .interview-content {
+        padding: 1rem 0.85rem;
+    }
+
+    .interview-nav {
+        padding: 0.75rem 0.85rem;
+
+        &__home-btn {
+            font-size: 0.78rem;
+            padding: 0.45rem 0.75rem;
+        }
+
+        &__item {
+            font-size: 0.78rem;
+            padding: 0.45rem 0.75rem;
+        }
+    }
+
+    .interview-sidebar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem 0.85rem;
+
+        .match-score,
+        .job-meter,
+        .skill-gaps {
+            flex: unset;
+            width: 100%;
+        }
+    }
+
+    .job-analysis-meta-card {
+        padding: 1.25rem;
+
+        .role-title { font-size: 1.15rem; }
+
+        .meta-top { flex-wrap: wrap; gap: 0.4rem; }
+    }
+
+    .job-breakdown-card {
+        padding: 1.15rem;
+
+        .card-header h4 { font-size: 0.95rem; }
+    }
+
+    .career-phase-card {
+        padding: 1.15rem;
+
+        &__header {
+            .career-phase-card__title { font-size: 1.1rem; }
+        }
+
+        &__project {
+            padding: 1rem;
+        }
+    }
+
+    .roadmap-day {
+        padding: 1rem 1.15rem;
+
+        &__focus { font-size: 0.95rem; }
+    }
+
+    .skill-matrix-card {
+        padding: 1.15rem;
+    }
+
+    .q-card {
+        &__header {
+            padding: 0.85rem;
+            gap: 0.5rem;
+        }
+
+        &__question {
+            font-size: 0.88rem;
+        }
+    }
+}
