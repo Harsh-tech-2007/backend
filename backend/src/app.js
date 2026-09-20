@@ -7,7 +7,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 const corsOptions = {
-    origin: "https://skill-sync-8nap.onrender.com",
+    origin: "https://mathiverse.in",
     credentials: true,
 }
 
